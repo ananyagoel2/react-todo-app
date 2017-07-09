@@ -9,7 +9,8 @@ import {
     AppRegistry,
     StyleSheet,
     Text,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 
 import {
@@ -17,32 +18,39 @@ import {
 } from 'react-navigation';
 
 import Todos from './app/components/Todos/Todos';
+import AndroidToolbar from './app/components/AndroidToolbar/AndroidToolbar';
+import AddButton from './app/components/AddButton/AddButton';
+import AddForm from './app/components/AddForm/AddForm';
 
-export  default class mobiletodos extends Component{
-    renderScene(route,navigator){
-        switch (route.id){
-            case 'todos':
-                return(
-                    <View style= {styles.screen}>
-                        <Todos navigator ={navigator} title="todos"/>
-                    </View>
-                )
-        }
-    }
+
+class todosnav extends Component{
+
     render(){
+        const { navigate } = this.props.navigation;
+
         return(
-            < Navigator
-            initialRoute={{'id':todos}}
-            renderScene ={this.renderScene}
-            configureScene = {(route, routeStack)=> Navigator.SceneConfigs.FloatFromBottom}
-            />
+            <View style= {styles.screen}>
+                <AndroidToolbar/>
+                <AddButton />
+                <Todos  title="todos"/>
+            </View>
         )
     }
 }
 
+const mobiletodos = StackNavigator({
+    Home: { screen: todosnav},
+    AddForm:{screen:AddForm},
+    AddButton:{screen:AddButton}
+},{
+    headerMode: 'none'
+});
+
+
 const styles = StyleSheet.create({
     screen:{
-        backgroundColor:"#2b4970"
+        backgroundColor:"#2b4970",
+        height:Dimensions.get('window').height,
     }
 })
 
