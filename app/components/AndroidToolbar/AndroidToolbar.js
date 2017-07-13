@@ -12,6 +12,10 @@ import {
     ToolbarAndroid
 } from 'react-native';
 
+
+import { Actions } from 'react-native-router-flux';
+
+
 export  default class AndroidToolbar extends Component{
     static defaultProps={
         title:'MobileTodos'
@@ -35,4 +39,4 @@ const styles = StyleSheet.create({
     }
 })
 
-AppRegistry.registerComponent('AndroidToolbar',()=>AndroidToolbar)
+// AppRegistry.registerComponent('AndroidToolbar',()=>AndroidToolbar)

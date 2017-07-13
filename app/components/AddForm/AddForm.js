@@ -1,49 +1,18 @@
-/**
- * Created by ananyagoel on 10/07/17.
- */
+import React, {Component} from 'react';
+import {AppRegistry, Text, View, StyleSheet} from 'react-native';
 
-/**
- * Created by ananyagoel on 10/07/17.
- */
-
-
-import React, { Component } from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    TouchableHighlight
-} from 'react-native';
-
-export  default class AddForm extends Component{
-    static navigationOptions = {
-        title: 'AddForm',
-    };
+export default class AddForm extends Component{
     render(){
-        const { navigate } = this.props.navigation;
-
         return(
-            <TouchableHighlight style={styles.button}
-                                onPress = {this.onPress.bind(this)}>
-                <Text style={styles.text}>
-                    Add todo
-                </Text>
-            </TouchableHighlight>
+            <View>
+                <Text>Add page</Text>
+            </View>
         )
     }
 }
+
 const styles = StyleSheet.create({
-    button:{
-        backgroundColor:"#000",
-        padding:10,
-        marginBottom:3
-    },
-    text:{
-        color:"#ffffff",
-        textAlign:'center'
-    }
 
-})
+});
 
-AppRegistry.registerComponent('AddForm',()=>AddForm)
+// AppRegistry.registerComponent('AddForm', () => AddForm);
