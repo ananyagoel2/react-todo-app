@@ -5,12 +5,7 @@
 
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
     View,
-    ListView,
-    TouchableHighlight,
     Dimensions
 } from 'react-native';
 

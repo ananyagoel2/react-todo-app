@@ -27,10 +27,9 @@ import AddButton from './app/components/AddButton/AddButton';
 import AddForm from './app/components/AddForm/AddForm';
 import homeScreen from './app/components/HomeScreen/homeScreen';
 
-export default class todosnav extends Component{
+export default class mobiletodos extends Component{
 
     render(){
-        const { navigate } = this.props.navigation;
 
         // return(
         //     <View style= {styles.screen}>
@@ -44,20 +43,13 @@ export default class todosnav extends Component{
                 <Scene key ="root">
                     {/*<Scene key = "AndroidToolbar" component = {AndroidToolbar}/>*/}
                     {/*<Scene key ="AddButton" component ={AddButton} />*/}
-                    <Scene key = "HomeScreen" component={homeScreen} title="Todos" initial={true} hideNavBar={true}/>
+                    <Scene key = "HomeScreen" component={homeScreen} title="TODOS" initial={true} hideNavBar={true}/>
                     <Scene key ="AddForm" component ={AddForm} title ="AddForm" hideNavBar={true}/>
                 </Scene>
             </Router>
         )
     }
 }
-
-const mobiletodos = StackNavigator({
-    Home: { screen: todosnav},
-    AddForm:{screen:AddForm}
-    },{
-    headerMode: 'none'
-});
 
 
 const styles = StyleSheet.create({

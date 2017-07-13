@@ -5,15 +5,12 @@
 
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
     View,
     ToolbarAndroid
 } from 'react-native';
 
 
-import { Actions } from 'react-native-router-flux';
 
 
 export  default class AndroidToolbar extends Component{
@@ -38,5 +35,3 @@ const styles = StyleSheet.create({
         backgroundColor:"#2b4970"
     }
 })
-
-// AppRegistry.registerComponent('AndroidToolbar',()=>AndroidToolbar)

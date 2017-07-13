@@ -7,18 +7,11 @@
 import React, { Component } from 'react';
 import {
     AppRegistry,
-    StyleSheet,
     Text,
     View,
     ListView,
     TouchableHighlight,
-    Dimensions
 } from 'react-native';
-
-import AndroidToolbar from '../AndroidToolbar/AndroidToolbar';
-import AddButton from '../AddButton/AddButton';
-
-
 
 export  default class Todos extends Component{
 
@@ -94,10 +87,6 @@ const styles={
     },
     text:{
         flex:1
-    },
-    screen:{
-                 backgroundColor:'#2b4970',
-       height:Dimensions.get('window').height
     }
 }
 
