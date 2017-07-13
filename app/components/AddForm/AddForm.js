@@ -60,7 +60,7 @@ export default class AddForm extends Component{
 
         AsyncStorage.setItem('todos',JSON.stringify(todos))
             .then(()=>
-                Actions.HomeScreen)
+                Actions.HomeScreen())
     }
 
     render(){
