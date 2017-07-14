@@ -55,11 +55,6 @@ export default class EditForm extends Component{
                         Actions.HomeScreen())
             })
 
-
-
-//        let todos = this.state.todos;
-
-
     }
 
     render(){

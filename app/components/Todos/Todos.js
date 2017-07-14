@@ -81,23 +81,6 @@ export  default class Todos extends Component{
                 })
             }
         })
-        // let todos=[
-        //     {
-        //         text:'Todo One',
-        //         completed:false
-        //     },
-        //     {
-        //         text:'Todo Two',
-        //         completed:false
-        //     },
-        //     {
-        //         text:'Todo three',
-        //         completed:true
-        //     }
-        // ];
-        // this.setState({
-        //     todoDataSource:this.state.todoDataSource.cloneWithRows(todos)
-        // })
 
     }
 

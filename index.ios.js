@@ -6,113 +6,36 @@
 
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    Dimensions,
-    TouchableHighlight
+    AppRegistry
 } from 'react-native';
-
-import {
-    StackNavigator,
-} from 'react-navigation';
 
 import { Router, Scene } from 'react-native-router-flux';
 
-
-import Todos from './app/components/Todos/Todos';
-import AndroidToolbar from './app/components/AndroidToolbar/AndroidToolbar';
-import AddButton from './app/components/AddButton/AddButton';
 import AddForm from './app/components/AddForm/AddForm';
 import homeScreen from './app/components/HomeScreen/homeScreen';
 import TodoDetails from './app/components/TodoDetails/TodoDetails';
+import EditForm from './app/components/EditForm/EditForm';
+
 
 export default class mobiletodos extends Component{
 
     render(){
 
-        // return(
-        //     <View style= {styles.screen}>
-        //         <AndroidToolbar />
-        //         <AddButton />
-        //         <Todos  title="todos"/>
-        //     </View>
-        // )
         return(
             <Router>
-              <Scene key ="root">
-                  {/*<Scene key = "AndroidToolbar" component = {AndroidToolbar}/>*/}
-                  {/*<Scene key ="AddButton" component ={AddButton} />*/}
-                <Scene key = "HomeScreen" component={homeScreen} title="TODOS" initial={true} hideNavBar={true}/>
-                <Scene key ="AddForm" component ={AddForm} title ="AddForm" hideNavBar={true}/>
-                <Scene key ="TodoDetails" component={TodoDetails} hideNavBar={true}/>
-              </Scene>
+                <Scene key ="root">
+                    <Scene key = "HomeScreen" component={homeScreen} title="TODOS" initial={true} hideNavBar={true}/>
+                    <Scene key ="AddForm" component ={AddForm} title ="AddForm" hideNavBar={true}/>
+                    <Scene key ="TodoDetails" component={TodoDetails} hideNavBar={true}/>
+                    <Scene key ="EditForm" component ={EditForm} hideNavBar={true} />
+                </Scene>
             </Router>
         )
     }
 }
 
 
-const styles = StyleSheet.create({
-    screen:{
-        backgroundColor:"#2b4970",
-        height:Dimensions.get('window').height,
-    }
-})
-
 AppRegistry.registerComponent('mobiletodos',()=>mobiletodos)
 
 
 
-
-//
-// import React, {Component} from 'react';
-// import {AppRegistry, Text, View, Navigator, StyleSheet, Dimensions} from 'react-native';
-//
-// import AndroidToolbar from './app/components/AndroidToolbar/AndroidToolbar';
-// import Todos from './app/components/Todos/Todos';
-// import AddButton from './app/components/AddButton/AddButton';
-// import AddForm from './app/components/AddForm/AddForm';
-//
-// export default class mobiletodos extends Component{
-//     renderScene(route, navigator){
-//         switch(route.id){
-//             case 'todos':
-//                 return (
-//                     <View style={styles.screen}>
-//                         <AndroidToolbar />
-//                         <AddButton navigator={navigator} />
-//                         <Todos navigator={navigator} title="todos" />
-//                     </View>
-//                 )
-//             case 'add':
-//                 return (
-//                     <View style={styles.screen}>
-//                         <AndroidToolbar title="Add Todo" />
-//                         <AddForm navigator={navigator} title="add" />
-//                     </View>
-//                 )
-//         }
-//     }
-//
-//     render(){
-//         return(
-//             <Navigator
-//                 initialRoute={{id: 'todos'}}
-//                 renderScene={this.renderScene}
-//                 configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromBottom}
-//             />
-//         )
-//     }
-// }
-//
-// const styles = StyleSheet.create({
-//     screen: {
-//         backgroundColor:'#2b4970',
-//         height:Dimensions.get('window').height
-//     }
-// });
-//
-//
-// AppRegistry.registerComponent('mobiletodos', () => mobiletodos);
