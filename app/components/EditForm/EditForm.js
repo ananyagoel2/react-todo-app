@@ -12,12 +12,12 @@ import { Actions } from 'react-native-router-flux';
 
 export default class EditForm extends Component{
 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state={
-            id:'',
-            text:'',
-            completed:false
+            id:this.props.id,
+            text:this.props.text,
+            completed:this.props.completed
         }
     }
 
@@ -34,17 +34,32 @@ export default class EditForm extends Component{
 
     onSubmit(){
         console.log("Adding TODO");
-        let todos = this.state.todos;
 
-        todos.push({
-            id:this.state.id,
-            text:this.state.text,
-            completed:this.state.completed
-        });
+        AsyncStorage.getItem('todos')
+            .then((value)=>{
+                let todos=JSON.parse(value)
 
-        AsyncStorage.setItem('todos',JSON.stringify(todos))
-            .then(()=>
-                Actions.HomeScreen())
+                for (i=0;i<todos.length;i++){
+                    if (todos[i].id==this.state.id){
+                        todos.splice(i,1)
+                    }
+                }
+                todos.push({
+                    id:this.state.id,
+                    text:this.state.text,
+                    completed:this.state.completed
+                });
+
+                AsyncStorage.setItem('todos',JSON.stringify(todos))
+                    .then(()=>
+                        Actions.HomeScreen())
+            })
+
+
+
+//        let todos = this.state.todos;
+
+
     }
 
     render(){

@@ -23,15 +23,55 @@ import { Actions } from 'react-native-router-flux';
 
 export  default class TodoDetails extends Component{
 
+    constructor(props){
+        super(props);
+        this.state={
+            id:this.props.id,
+            text:this.props.text,
+            completed:this.props.completed
+        }
+    }
+
+
     onEdit(){
         console.log("onEdit")
-        Actions.EditForm(this.props);
+        let todo={
+            id:this.state.id,
+            text:this.state.text,
+            completed:this.state.completed
+        }
+        Actions.EditForm(todo);
     }
     onDelete(){
 
+        AsyncStorage.getItem('todos')
+            .then((value)=>{
+
+                let todos=JSON.parse(value)
+
+                for (i=0;i<todos.length;i++){
+                    if (todos[i].id==this.state.id){
+                        todos.splice(i,1)
+                    }
+                }
+
+                AsyncStorage.setItem('todos',JSON.stringify(todos))
+                    .then(()=>
+                        Actions.HomeScreen())
+
+
+            })
+
     }
     onShare(){
-
+        Share.share({
+            message:this.state.text
+        })
+            .then(()=>
+            {
+                Actions.HomeScreen()
+            })
+            .catch((error)=>console.log(error))
     }
 
     render(){
