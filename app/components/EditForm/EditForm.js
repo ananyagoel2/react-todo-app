@@ -1,3 +1,7 @@
+/**
+ * Created by ananyagoel on 14/07/17.
+ */
+
 import React, {Component} from 'react';
 import { Text, View, Dimensions, Button,TextInput, Switch, AsyncStorage} from 'react-native';
 
@@ -6,37 +10,17 @@ import AndroidToolbar from '../AndroidToolbar/AndroidToolbar';
 import { Actions } from 'react-native-router-flux';
 
 
-export default class AddForm extends Component{
+export default class EditForm extends Component{
 
     constructor(){
         super();
         this.state={
             id:'',
             text:'',
-            completed:false,
-            todos:[]
+            completed:false
         }
     }
-    componentDidMount(){
-        this.generateId()
-        this.getTodos()
-    }
 
-    getTodos(){
-        AsyncStorage.getItem('todos').then((value)=>
-        {
-            if(value!=undefined){
-                this.setState({todos:JSON.parse(value)})
-            }
-        })
-    }
-
-
-
-    generateId(){
-        let id = Math.floor(Math.random()*10000000)
-        this.setState({id})
-    }
     onTextChange(value){
         this.setState({
             text:value
@@ -64,32 +48,33 @@ export default class AddForm extends Component{
     }
 
     render(){
+        console.log("Edit"+this.props.text)
         return(
             <View style = {styles.screen}>
                 <AndroidToolbar title='Add TO-DO' />
                 <View style = {styles.addForm}>
-                <TextInput
-                    value ={this.state.text}
-                    placeholder="TODO text"
-                    onChangeText={(value)=> this.onTextChange(value)}
-                />
-                <View style = {styles.completed}>
-                    <Text>
-                        Completed:
-                    </Text>
-                    <Switch
-                    value={this.state.completed}
-                    onValueChange={(value)=> this.onCompletedChange(value)}
+                    <TextInput
+                        value ={this.state.text}
+                        placeholder="TODO text"
+                        onChangeText={(value)=> this.onTextChange(value)}
                     />
-                </View>
-                <View style={styles.submit}>
-                    <Button
-                        style={styles.btn}
-                        onPress={this.onSubmit.bind(this)}
-                        title="Submit"
-                        color="black"
-                    />
-                </View>
+                    <View style = {styles.completed}>
+                        <Text>
+                            Completed:
+                        </Text>
+                        <Switch
+                            value={this.state.completed}
+                            onValueChange={(value)=> this.onCompletedChange(value)}
+                        />
+                    </View>
+                    <View style={styles.submit}>
+                        <Button
+                            style={styles.btn}
+                            onPress={this.onSubmit.bind(this)}
+                            title="Submit"
+                            color="black"
+                        />
+                    </View>
                 </View>
             </View>
         )

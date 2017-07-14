@@ -26,6 +26,8 @@ import AndroidToolbar from './app/components/AndroidToolbar/AndroidToolbar';
 import AddButton from './app/components/AddButton/AddButton';
 import AddForm from './app/components/AddForm/AddForm';
 import homeScreen from './app/components/HomeScreen/homeScreen';
+import TodoDetails from './app/components/TodoDetails/TodoDetails';
+import EditForm from './app/components/EditForm/EditForm';
 
 export default class mobiletodos extends Component{
 
@@ -45,6 +47,8 @@ export default class mobiletodos extends Component{
                     {/*<Scene key ="AddButton" component ={AddButton} />*/}
                     <Scene key = "HomeScreen" component={homeScreen} title="TODOS" initial={true} hideNavBar={true}/>
                     <Scene key ="AddForm" component ={AddForm} title ="AddForm" hideNavBar={true}/>
+                    <Scene key ="TodoDetails" component={TodoDetails} hideNavBar={true}/>
+                    <Scene key ="EditForm" component ={EditForm} hideNavBar={true} />
                 </Scene>
             </Router>
         )

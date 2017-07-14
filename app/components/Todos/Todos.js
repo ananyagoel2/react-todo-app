@@ -11,7 +11,11 @@ import {
     View,
     ListView,
     TouchableHighlight,
+    AsyncStorage,
+    Image
 } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
 
 export  default class Todos extends Component{
 
@@ -33,6 +37,15 @@ export  default class Todos extends Component{
         this.geTodos()
     }
     renderRow(todo){
+        let image;
+        if (todo.completed){
+            image=<Image
+            style={styles.checkImage}
+            source={require('./check.png')}/>
+        }
+        else {
+            <Text/>
+        }
         console.log(todo)
         return(
             <TouchableHighlight onPress={()=>{
@@ -42,32 +55,49 @@ export  default class Todos extends Component{
                     <Text style={styles.text}>
                         {todo.text}
                     </Text>
+                    <View style={styles.check}>
+                        {image}
+                    </View>
                 </View>
             </TouchableHighlight>
         )
     }
     pressRow(todo){
-        console.log(todo)
+        console.log("todo"+todo.text)
+        Actions.TodoDetails(todo)
     }
 
     geTodos(){
-        let todos=[
-            {
-                text:'Todo One',
-                completed:false
-            },
-            {
-                text:'Todo Two',
-                completed:false
-            },
-            {
-                text:'Todo three',
-                completed:true
+        AsyncStorage.getItem('todos').then((value)=>
+        {
+            console.log(value);
+            if (value==undefined){
+                console.log("NO TODOS")
             }
-        ];
-        this.setState({
-            todoDataSource:this.state.todoDataSource.cloneWithRows(todos)
+            else {
+                let todos=JSON.parse(value);
+                this.setState({
+                    todoDataSource:this.state.todoDataSource.cloneWithRows(todos)
+                })
+            }
         })
+        // let todos=[
+        //     {
+        //         text:'Todo One',
+        //         completed:false
+        //     },
+        //     {
+        //         text:'Todo Two',
+        //         completed:false
+        //     },
+        //     {
+        //         text:'Todo three',
+        //         completed:true
+        //     }
+        // ];
+        // this.setState({
+        //     todoDataSource:this.state.todoDataSource.cloneWithRows(todos)
+        // })
 
     }
 
@@ -87,6 +117,12 @@ const styles={
     },
     text:{
         flex:1
+    },
+    check:{
+        flex:1
+    },
+    checkImage:{
+        alignSelf:'flex-end'
     }
 }
 
